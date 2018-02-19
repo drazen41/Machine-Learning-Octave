@@ -25,7 +25,16 @@ sigma = zeros(1, size(X, 2));
 %
 % Hint: You might find the 'mean' and 'std' functions useful.
 %       
-
+  
+  for i = 1:size(X,2)
+    %prosjek = mean(X(:,i))
+    %stdDev = std(X(:,i))
+    %X_norm(:,i)=(X(:,i)-prosjek) / stdDev;
+    mu(i) =  mean(X(:,i));
+    sigma(i) = std(X(:,i));
+    X_norm(:,i)=(X(:,i)-mu(i)) / sigma(i);
+    
+  end
 
 
 
