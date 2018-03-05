@@ -72,7 +72,10 @@ for i=1:m
   
   y_t(i,b) = 1;
 end
-%y_t
+%size_y_t = size(y_t)
+% oko = eye(num_labels);
+% prvi_y = y(1); % 10
+% y_mat = oko(prvi,:) % 0   0   0   0   0   0   0   0   0   1
 % y_matrix = eye(num_labels)(y,:) % vektorizirano
 a1 = [ones(m,1) X];
 z2 = a1 * Theta1';
@@ -81,19 +84,37 @@ a2 = [ ones(size(a2,1),1) a2];
 %size(a2)
 z3 = a2 * Theta2';
 a3 = sigmoid(z3);
-%size(a3)
- 
-suma = 0;
-for i=1:m
-  temp_suma = 0;
-  
-  for j=1:num_labels
-    
-   
-  end
-   suma += temp_suma;  
-  
-end
+%size_a3 = size(a3)
+
+t = sum(sum((-y_t .* log(a3))-((1-y_t) .* log(1-a3))));
+%size(t)
+J = t/m;
+reg = (lambda/(2*m)) * (sum(sum(Theta1(:,2:end).^2)) + sum(sum(Theta2(:,2:end).^2)));
+%size_reg = size(reg)
+J += reg;
+
+
+error3 = a3 - y_t;
+%size_delta3 = size(delta3)
+error2 = error3 * Theta2(:,2:end) .* sigmoidGradient(z2) ;
+%size(error2)
+Delta1 = error2' * a1;
+%size(Delta1)
+Delta2 = error3' * a2;
+
+Theta1_grad = Delta1 / m;
+Theta2_grad = Delta2 / m;
+%size(Theta1_grad)
+
+Theta1_reg = Theta1;
+Theta1_reg(:,1)=0;
+Theta2_reg = Theta2;
+Theta2_reg(:,1)=0;
+Theta1_reg = (Theta1_reg * lambda) / m;
+%size(Theta1_reg);
+Theta1_grad += Theta1_reg;
+Theta2_reg = (Theta2_reg * lambda)/m;
+Theta2_grad += Theta2_reg;
 
 
 
