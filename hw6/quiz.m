@@ -20,7 +20,7 @@
   falsePosSpam = 0;
  RecallSpam =  truePosSpam / (truePosSpam + falseNegSpam);
  AccurSpam = (truePosSpam + trueNegSpam) / totalExamSpam;
- PrecSpam = (truePosSpam) / (truePosSpam + falsePosSpam);
+ %PrecSpam = (truePosSpam) / (truePosSpam + falsePosSpam);
  y=1;
  truePosSpam1 = 10;
  falsePosSpam1 = 990;
