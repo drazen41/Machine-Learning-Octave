@@ -20,9 +20,23 @@ idx = zeros(size(X,1), 1);
 %
 % Note: You can use a for-loop over the examples to compute this.
 %
-
-
-
+  %centroids
+  m = size(X,1);
+  %dist = zeros(m,K);
+  pos = zeros(K,1);
+  for i=1:m
+    x = X(i,:);
+    
+    for j=1:size(centroids,1)
+      c = centroids(j,:);
+      pos(j) = norm(x-c); %euclidian distance
+      
+    end
+    %pos
+    [ind,idx(i)]=min(pos);
+  end
+  
+  
 
 
 
