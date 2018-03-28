@@ -13,5 +13,7 @@ end
 total1 = sum(sum((A*B).*R));
 total2 = sum(sum(C(R==1)));
 C = (A*B)*R;total3=sum(C(:));
+C = (A*B).*R;total4 = sum(C(:));
+total5=sum(sum(A*B)*R);
 %total4=sum(sum(A(R==1)*B(R==1))); % out of bound
       
